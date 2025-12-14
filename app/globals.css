@@ -1,1 +1,240 @@
 @import "tailwindcss";
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  cursor: none !important;
+}
+
+:root {
+  --black: #17171a;
+  --white: #f2efde;
+  --gold: #d4b46a;
+  --red: #b31b1b;
+  --radius: 0px;
+}
+
+html,
+body {
+  background-color: var(--white);
+}
+
+.main-grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  gap: 3px;
+  padding: 3px;
+  user-select: none;
+}
+
+.main-grid > article:not(#projects) {
+  color: var(--white);
+  display: flex;
+  font-size: 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--black);
+  padding: 2rem;
+  align-items: center;
+}
+
+/* Center block */
+#projects {
+  grid-column: 5 / span 12;
+  grid-row: 4 / span 14;
+}
+
+
+/* Top and bottom blocks */
+#title {
+  grid-column: 1 / span 21;
+  grid-row: 1 / span 3;
+  justify-content: center;
+}
+
+#contact {
+  grid-column: 1 / span 21;
+  grid-row: 18 / span 3;
+  justify-content: space-between;
+}
+
+/* Left and right blocks */
+#about {
+  grid-column: 1 / span 4;
+  grid-row: 4 / span 14;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#resumé {
+  grid-column: 17 / span 5;
+  grid-row: 4 / span 14;
+  justify-content: center;
+  flex-direction: column;
+  text-align: start;
+}
+
+.image-sizing {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius);
+}
+
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.clock {
+  width: 50vmin;
+  aspect-ratio: 1/1;
+  position: relative;
+  border-radius: 50%;
+}
+.name {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -65%); /* only horizontally center */
+  width: 80%; /* limit to clock area */
+  text-align: center;
+  font-size: clamp(1rem, 2.1vmin, 2rem);
+  color: var(--gold);
+  letter-spacing: 0.3rem;
+  font-family: "Times New Roman", Times, serif;
+}
+/* middle circle ===== */
+.clock::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.5%;
+  height: 1.5%;
+  background-color: var(--white);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* shadows for tip/counterweight */
+  z-index: 13;
+}
+
+/* HANDS ===== */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  background-color: var(--white);
+  transform-origin: 50% 100%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25); /* shaft shadow */
+}
+
+.second {
+  width: 2px;
+  height: 45%;
+  z-index: 12;
+}
+.minute {
+  width: 3px;
+  height: 43%;
+  z-index: 11;
+}
+.hour {
+  width: 3px;
+  height: 30%;
+  z-index: 10;
+}
+
+/* Counterweights ===== */
+.hand:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--white);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25); /* shadows for tip/counterweight */
+}
+
+.second::before {
+  width: 2px;
+  height: 25%;
+}
+.minute::before,
+.hour::before {
+  width: 3px;
+  height: 20%;
+}
+
+/* Red marker ===== */
+.second::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10%;
+  background-color: var(--red);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25); /* shadows for tip/counterweight */
+}
+
+/* Image slider =====*/
+.embla {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.slide-1 {
+  background-color: var(--black);
+  border-radius: var(--radius);
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Cursor ===== */
+/* Hide default cursor */
+body {
+  cursor: none;
+}
+
+/* Custom cursor style */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: var(--white);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.4s ease, height 0.4s ease, background-color 0.4s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hovered {
+  width: 30px;
+  height: 30px;
+  background-color: var(--gold);
+}
