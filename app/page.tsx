@@ -14,18 +14,16 @@ export default function Home() {
         </p>
       </article>
       <article id="resumé">
-        <div>
-          <p>Simplicity</p>
-          <p>Efficiency</p>
-          <p>Reliability</p>
-        </div>
+        <h2>Resume</h2>
       </article>
       <article id="about">
-        <p>About</p>
+        <a href="/about">
+          <h2> About</h2>
+        </a>
       </article>
       <article id="contact">
         <a href="mailto:contact@liminghillmanconsult.com">
-          contact@liminghillmanconsult.com
+          contact@liminghillman.com
         </a>
 
         <div className="socials">

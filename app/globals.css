@@ -18,27 +18,44 @@
   --radius: 0px;
 }
 
-html,
+html {
+  background-color: black;
+}
+
 body {
-  background-color: var(--white);
+  background-color: var(--black);
 }
 
 .main-grid {
   height: 100vh;
+  padding: 1%;
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
-  gap: 3px;
-  padding: 3px;
   user-select: none;
 }
 
-.main-grid > article:not(#projects) {
+/* background layer */
+.main-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/tenniscourt-texture.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(50%);
+}
+
+.main-grid > * {
+  position: relative;
+  z-index: 1;
+}
+
+.main-grid > article {
   color: var(--white);
   display: flex;
   font-size: 1.25rem;
-  border-radius: var(--radius);
-  background-color: var(--black);
   padding: 2rem;
   align-items: center;
 }
@@ -47,29 +64,42 @@ body {
 #projects {
   grid-column: 5 / span 12;
   grid-row: 4 / span 14;
+  transition: 0.3s ease-out;
 }
 
+#projects:hover {
+  padding: 0;
+  transition: 0.3s ease-out;
+}
 
 /* Top and bottom blocks */
 #title {
   grid-column: 1 / span 21;
   grid-row: 1 / span 3;
   justify-content: center;
+  border: 3px solid var(--white);
 }
 
 #contact {
   grid-column: 1 / span 21;
   grid-row: 18 / span 3;
   justify-content: space-between;
+  border: 3px solid var(--white);
 }
 
 /* Left and right blocks */
+
+/* About ================= */
 #about {
   grid-column: 1 / span 4;
   grid-row: 4 / span 14;
   justify-content: center;
   flex-direction: column;
+  border: solid var(--white);
+  border-width: 0 3px 0 3px;
 }
+
+/* Resumé ================= */
 
 #resumé {
   grid-column: 17 / span 5;
@@ -77,13 +107,14 @@ body {
   justify-content: center;
   flex-direction: column;
   text-align: start;
+  border: solid var(--white);
+  border-width: 0 3px 0 3px;
 }
 
 .image-sizing {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: var(--radius);
 }
 
 .clock-container {
@@ -200,11 +231,6 @@ body {
 .embla__slide {
   flex: 0 0 100%;
   min-width: 0;
-}
-
-.slide-1 {
-  background-color: var(--black);
-  border-radius: var(--radius);
 }
 
 .socials {
