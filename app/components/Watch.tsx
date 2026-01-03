@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function Watch() {
@@ -36,6 +37,16 @@ export default function Watch() {
 
   return (
     <div className="clock">
+      <div className="logo">
+        <Image
+          className="image-sizing block justify-self-center"
+          src="/Vector.svg"
+          height={30}
+          width={21}
+          alt="Logo"
+        ></Image>
+      </div>
+
       <div ref={hourRef} className="hand hour"></div>
       <div ref={minuteRef} className="hand minute"></div>
       <div ref={secondRef} className="hand second"></div>

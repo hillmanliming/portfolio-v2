@@ -5,9 +5,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   cursor: none !important;
+  font-family: "georgia", serif;
 }
 
 :root {
@@ -18,17 +17,15 @@
   --radius: 0px;
 }
 
-html {
-  background-color: black;
-}
-
+html,
 body {
-  background-color: var(--black);
+  background-color: black;
+  cursor: none !important;
 }
 
 .main-grid {
   height: 100vh;
-  padding: 1%;
+  padding: 2%;
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
@@ -44,7 +41,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(50%);
+  filter: brightness(45%);
 }
 
 .main-grid > * {
@@ -55,9 +52,11 @@ body {
 .main-grid > article {
   color: var(--white);
   display: flex;
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: 2rem;
   align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.125rem;
 }
 
 /* Center block */
@@ -76,8 +75,16 @@ body {
 #title {
   grid-column: 1 / span 21;
   grid-row: 1 / span 3;
-  justify-content: center;
   border: 3px solid var(--white);
+  justify-content: center;
+  width: 100%;
+  letter-spacing: 0.125rem;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 #contact {
@@ -93,8 +100,6 @@ body {
 #about {
   grid-column: 1 / span 4;
   grid-row: 4 / span 14;
-  justify-content: center;
-  flex-direction: column;
   border: solid var(--white);
   border-width: 0 3px 0 3px;
 }
@@ -104,9 +109,7 @@ body {
 #resumé {
   grid-column: 17 / span 5;
   grid-row: 4 / span 14;
-  justify-content: center;
-  flex-direction: column;
-  text-align: start;
+  justify-content: end;
   border: solid var(--white);
   border-width: 0 3px 0 3px;
 }
@@ -116,7 +119,7 @@ body {
   object-fit: cover;
   object-position: center;
 }
-
+/* Clock ===================================================================================== */
 .clock-container {
   display: flex;
   justify-content: center;
@@ -130,6 +133,18 @@ body {
   position: relative;
   border-radius: 50%;
 }
+
+.logo {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -35%); /* only horizontally center */
+  width: 80%; /* limit to clock area */
+  text-align: center;
+  color: var(--gold);
+  letter-spacing: 0.2rem;
+  font-size: 1rem;
+}
 .name {
   position: absolute;
   top: 65%;
@@ -137,11 +152,11 @@ body {
   transform: translate(-50%, -65%); /* only horizontally center */
   width: 80%; /* limit to clock area */
   text-align: center;
-  font-size: clamp(1rem, 2.1vmin, 2rem);
   color: var(--gold);
-  letter-spacing: 0.3rem;
-  font-family: "Times New Roman", Times, serif;
+  letter-spacing: 0.25rem;
+  font-size: 1rem;
 }
+
 /* middle circle ===== */
 .clock::after {
   content: "";
@@ -218,7 +233,7 @@ body {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25); /* shadows for tip/counterweight */
 }
 
-/* Image slider =====*/
+/* Image slider ============================================================================ */
 .embla {
   height: 100%;
   width: 100%;
@@ -238,11 +253,8 @@ body {
   gap: 1rem;
 }
 
-/* Cursor ===== */
+/* Cursor ======================================================================================= */
 /* Hide default cursor */
-body {
-  cursor: none;
-}
 
 /* Custom cursor style */
 .custom-cursor {
@@ -255,7 +267,7 @@ body {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transition: width 0.4s ease, height 0.4s ease, background-color 0.4s ease;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
   mix-blend-mode: difference;
 }
 

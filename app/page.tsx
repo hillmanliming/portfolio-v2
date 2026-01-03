@@ -9,16 +9,23 @@ export default function Home() {
         <ImageSlider />
       </article>
       <article id="title">
-        <p className="">
-          Li-Ming Hillman - Front-end developer and UI Designer
-        </p>
+        <div className="head">
+          <div className="justify-self-start uppercase">
+            Front-end developer
+          </div>
+
+          <div className="justify-self-end uppercase">UI-designer</div>
+        </div>
       </article>
-      <article id="resumé">
-        <h2>Resume</h2>
-      </article>
+
       <article id="about">
         <a href="/about">
-          <h2> About</h2>
+          <h2>About</h2>
+        </a>
+      </article>
+      <article id="resumé">
+        <a href="/resumé">
+          <h2 className="">Resume</h2>
         </a>
       </article>
       <article id="contact">
