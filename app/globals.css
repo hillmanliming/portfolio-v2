@@ -22,18 +22,12 @@ body {
   background-color: black;
   cursor: none !important;
 }
-
-.main-grid {
+.main-container {
   height: 100vh;
   padding: 2%;
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
-  user-select: none;
 }
 
-/* background layer */
-.main-grid::before {
+.main-container::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -42,7 +36,113 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(45%);
+  opacity: 0;
+  animation: fade-in 2s ease-out forwards;
 }
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 1s 1s ease-in-out forwards;
+}
+
+.main-grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  user-select: none;
+  position: relative;
+}
+
+/* Lines animation ============== */
+
+@keyframes draw-borderY {
+  to {
+    transform: scaleY(1); /* fully drawn */
+  }
+}
+
+@keyframes draw-borderX {
+  to {
+    transform: scaleX(1); /* fully drawn */
+  }
+}
+
+/* common properties for all border pseudo-elements */
+.main-grid::before,
+.main-grid::after,
+#title::before,
+#title::after,
+#contact::before,
+#contact::after,
+#about::after,
+#resumé::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* top:0; left:0; right:0; bottom:0 */
+  z-index: 0;
+  transform-origin: middle;
+}
+
+#title::before,
+#title::after,
+#contact::before,
+#contact::after {
+  transform: scaleX(0);
+  animation: draw-borderX 2s ease-out forwards;
+}
+
+/* Assign borders */
+#title::before,
+#contact::before {
+  border-top: 3px solid var(--white);
+}
+#title::after,
+#contact::after {
+  border-bottom: 3px solid var(--white);
+}
+
+.main-grid::before,
+.main-grid::after,
+#about::after,
+#resumé::before {
+  transform: scaleY(0);
+  animation: draw-borderY 2s ease-out forwards;
+}
+
+/* Assign borders */
+.main-grid::before {
+  border-left: 3px solid var(--white);
+}
+.main-grid::after {
+  border-right: 3px solid var(--white);
+}
+#about::after {
+  border-right: 3px solid var(--white);
+}
+#resumé::before {
+  border-left: 3px solid var(--white);
+}
+
+@keyframes draw-borderX {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes draw-borderY {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* ====================== */
 
 .main-grid > * {
   position: relative;
@@ -64,18 +164,14 @@ body {
   grid-column: 5 / span 12;
   grid-row: 4 / span 14;
   transition: 0.3s ease-out;
-}
-
-#projects:hover {
   padding: 0;
-  transition: 0.3s ease-out;
 }
 
 /* Top and bottom blocks */
+
 #title {
   grid-column: 1 / span 21;
   grid-row: 1 / span 3;
-  border: 3px solid var(--white);
   justify-content: center;
   width: 100%;
   letter-spacing: 0.125rem;
@@ -91,7 +187,6 @@ body {
   grid-column: 1 / span 21;
   grid-row: 18 / span 3;
   justify-content: space-between;
-  border: 3px solid var(--white);
 }
 
 /* Left and right blocks */
@@ -100,8 +195,6 @@ body {
 #about {
   grid-column: 1 / span 4;
   grid-row: 4 / span 14;
-  border: solid var(--white);
-  border-width: 0 3px 0 3px;
 }
 
 /* Resumé ================= */
@@ -110,28 +203,21 @@ body {
   grid-column: 17 / span 5;
   grid-row: 4 / span 14;
   justify-content: end;
-  border: solid var(--white);
-  border-width: 0 3px 0 3px;
 }
 
 .image-sizing {
   height: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
 }
 /* Clock ===================================================================================== */
-.clock-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
 .clock {
   width: 50vmin;
   aspect-ratio: 1/1;
   position: relative;
-  border-radius: 50%;
+  opacity: 0;
 }
 
 .logo {
@@ -242,10 +328,14 @@ body {
 }
 .embla__container {
   display: flex;
+  transform: translateZ(0);
+  will-change: transform;
 }
 .embla__slide {
   flex: 0 0 100%;
   min-width: 0;
+  overflow: hidden;
+  contain: layout paint;
 }
 
 .socials {
@@ -254,8 +344,11 @@ body {
 }
 
 /* Cursor ======================================================================================= */
-/* Hide default cursor */
 
+a,
+button {
+  z-index: 1;
+}
 /* Custom cursor style */
 .custom-cursor {
   position: fixed;

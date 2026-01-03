@@ -9,7 +9,7 @@ export default function EmblaCarousel() {
   return (
     <div className="embla" ref={emblaRef}>
       <div className="embla__container h-full">
-        <div className="embla__slide flex items-center justify-center slide-1">
+        <div className="embla__slide flex items-center justify-center">
           <Watch />
         </div>
         <div className="embla__slide flex items-center justify-center">

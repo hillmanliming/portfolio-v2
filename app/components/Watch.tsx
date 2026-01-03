@@ -8,7 +8,26 @@ export default function Watch() {
   const secondRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tick = () => {
+    let rafId: number;
+    let isFocused = true;
+
+    const onFocus = () => {
+      isFocused = true;
+    };
+
+    const onBlur = () => {
+      isFocused = false;
+    };
+
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("blur", onBlur);
+
+    const animate = () => {
+      if (document.hidden || !isFocused) {
+        rafId = requestAnimationFrame(animate);
+        return;
+      }
+
       const now = new Date();
 
       const ms = now.getMilliseconds();
@@ -16,9 +35,9 @@ export default function Watch() {
       const min = now.getMinutes() + sec / 60;
       const hr = (now.getHours() % 12) + min / 60;
 
-      const hourDeg = hr * 30; // 360/12
-      const minuteDeg = min * 6; // 360/60
-      const secondDeg = sec * 6; // 360/60
+      const hourDeg = hr * 30;
+      const minuteDeg = min * 6;
+      const secondDeg = sec * 6;
 
       if (hourRef.current)
         hourRef.current.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
@@ -26,24 +45,28 @@ export default function Watch() {
         minuteRef.current.style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
       if (secondRef.current)
         secondRef.current.style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+
+      rafId = requestAnimationFrame(animate);
     };
 
-    tick(); // initial sync
+    rafId = requestAnimationFrame(animate);
 
-    const interval = setInterval(tick, 1000 / 6); // 6 ticks per sec
-
-    return () => clearInterval(interval);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("blur", onBlur);
+    };
   }, []);
-
   return (
-    <div className="clock">
+    <div className="clock fade-in">
       <div className="logo">
         <Image
-          className="image-sizing block justify-self-center"
+          className=" justify-self-center"
           src="/Vector.svg"
           height={30}
           width={21}
           alt="Logo"
+          priority
         ></Image>
       </div>
 

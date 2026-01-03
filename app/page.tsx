@@ -3,45 +3,57 @@ import Cursor from "./components/Cursor";
 
 export default function Home() {
   return (
-    <main className="main-grid">
-      <Cursor />
-      <article id="projects">
-        <ImageSlider />
-      </article>
-      <article id="title">
-        <div className="head">
-          <div className="justify-self-start uppercase">
-            Front-end developer
+    <div className="main-container">
+      <main className="main-grid">
+        <Cursor />
+        <article id="projects">
+          <ImageSlider />
+        </article>
+        <article id="title">
+          <div className="head">
+            <div className="justify-self-start uppercase fade-in">
+              Front-end developer
+            </div>
+
+            <div className="justify-self-end uppercase fade-in">
+              UI-designer
+            </div>
           </div>
+        </article>
 
-          <div className="justify-self-end uppercase">UI-designer</div>
-        </div>
-      </article>
-
-      <article id="about">
-        <a href="/about">
-          <h2>About</h2>
-        </a>
-      </article>
-      <article id="resumé">
-        <a href="/resumé">
-          <h2 className="">Resume</h2>
-        </a>
-      </article>
-      <article id="contact">
-        <a href="mailto:contact@liminghillmanconsult.com">
-          contact@liminghillman.com
-        </a>
-
-        <div className="socials">
-          <a target="_blank" href="https://www.linkedin.com/in/li-minghillman">
-            LinkedIn
+        <article id="about">
+          <a className="fade-in" href="/about">
+            <h2>About</h2>
           </a>
-          <a target="_blank" href="https://www.instagram.com/liminghillman">
-            Instagram
+        </article>
+        <article id="resumé">
+          <a href="/resumé">
+            <h2 className="fade-in">Resumé</h2>
           </a>
-        </div>
-      </article>
-    </main>
+        </article>
+        <article id="contact">
+          <a className="fade-in" href="mailto:contact@liminghillmanconsult.com">
+            contact@liminghillman.com
+          </a>
+
+          <div className="socials">
+            <a
+              className="fade-in"
+              target="_blank"
+              href="https://www.linkedin.com/in/li-minghillman"
+            >
+              LinkedIn
+            </a>
+            <a
+              className="fade-in"
+              target="_blank"
+              href="https://www.instagram.com/liminghillman"
+            >
+              Instagram
+            </a>
+          </div>
+        </article>
+      </main>
+    </div>
   );
 }
