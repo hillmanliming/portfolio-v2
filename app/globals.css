@@ -18,8 +18,7 @@
   --radius: 0px;
 }
 
-html,
-body {
+html {
   background-color: black;
 }
 .main-container {
@@ -359,8 +358,8 @@ button {
   pointer-events: none;
   z-index: 9999;
   overflow: hidden;
-  transition: width 0.3s ease-out, height 0.3s ease-out,
-    background-color 0.3s ease-out;
+  transition: width 0.4s ease-out, height 0.4s ease-out,
+    background-color 0.4s ease-out;
 }
 
 /* shared seam styles */
@@ -374,7 +373,6 @@ button {
   border: 2px solid transparent;
   border-radius: 50%;
   transform: translateY(-50%);
-  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
 }
 
 /* left seam */
@@ -393,4 +391,50 @@ button {
   width: 30px;
   height: 30px;
   background-color: var(--gold);
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background-color: #ccff00;
+}
+
+.custom-cursor.hovered {
+  width: 40px;
+  height: 40px;
+}
+
+.cursor-bubble {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  padding: 4px 12px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 6px;
+  white-space: nowrap;
+
+  /* key: semi-transparent + backdrop-filter */
+  background-color: rgba(0, 0, 0, 0.8); /* semi-transparent dark */
+  backdrop-filter: blur(6px); /* frosted blur */
+  -webkit-backdrop-filter: blur(6px); /* Safari support */
+
+  /* optional: subtle shadow to make it pop */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease-out, transform 0.1s ease-out;
+  z-index: 9999;
+}
+
+.cursor-bubble.visible {
+  opacity: 1;
 }
