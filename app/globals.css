@@ -358,8 +358,8 @@ button {
   pointer-events: none;
   z-index: 9999;
   overflow: hidden;
-  transition: width 0.4s ease-out, height 0.4s ease-out,
-    background-color 0.4s ease-out;
+  transition: width 0.3s ease-out, height 0.3s ease-out,
+    background-color 0.3s ease-out;
 }
 
 /* shared seam styles */
@@ -418,20 +418,17 @@ button {
   padding: 4px 12px;
   font-size: 1rem;
   color: #fff;
-  border-radius: 6px;
   white-space: nowrap;
 
   /* key: semi-transparent + backdrop-filter */
   background-color: rgba(0, 0, 0, 0.8); /* semi-transparent dark */
-  backdrop-filter: blur(6px); /* frosted blur */
-  -webkit-backdrop-filter: blur(6px); /* Safari support */
 
   /* optional: subtle shadow to make it pop */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   opacity: 0;
   transform: translate(-50%, -50%);
-  transition: opacity 0.4s ease-out, transform 0.1s ease-out;
+  transition: opacity 0.3s ease-out, transform 0.1s ease-out;
   z-index: 9999;
 }
 
