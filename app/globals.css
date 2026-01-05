@@ -1,5 +1,6 @@
 @import "tailwindcss";
 *,
+* > *,
 *::before,
 *::after {
   margin: 0;
@@ -20,7 +21,6 @@
 html,
 body {
   background-color: black;
-  cursor: none !important;
 }
 .main-container {
   height: 100vh;
@@ -225,11 +225,9 @@ body {
   top: 35%;
   left: 50%;
   transform: translate(-50%, -35%); /* only horizontally center */
-  width: 80%; /* limit to clock area */
+  /* limit to clock area */
   text-align: center;
   color: var(--gold);
-  letter-spacing: 0.2rem;
-  font-size: 1rem;
 }
 .name {
   position: absolute;
@@ -356,12 +354,39 @@ button {
   left: 0;
   width: 20px;
   height: 20px;
-  background-color: var(--white);
+  background-color: #ccff00;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
+  overflow: hidden;
+  transition: width 0.3s ease-out, height 0.3s ease-out,
+    background-color 0.3s ease-out;
+}
+
+/* shared seam styles */
+.custom-cursor::before,
+.custom-cursor::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  height: 105%;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transform: translateY(-50%);
   transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
-  mix-blend-mode: difference;
+}
+
+/* left seam */
+.custom-cursor::before {
+  left: -20%;
+  border-right-color: rgba(0, 0, 0, 0.6);
+}
+
+/* right seam */
+.custom-cursor::after {
+  right: -20%;
+  border-left-color: rgba(0, 0, 0, 0.6);
 }
 
 .custom-cursor.hovered {

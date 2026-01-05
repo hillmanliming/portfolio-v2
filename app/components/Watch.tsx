@@ -59,9 +59,9 @@ export default function Watch() {
   }, []);
   return (
     <div className="clock fade-in">
-      <div className="logo">
+      <div>
         <Image
-          className=" justify-self-center"
+          className="logo"
           src="/Vector.svg"
           height={30}
           width={21}

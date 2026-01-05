@@ -1,10 +1,13 @@
 "use client";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import Watch from "./Watch";
 
 export default function EmblaCarousel() {
-  const [emblaRef] = useEmblaCarousel({ loop: true });
+  const [emblaRef] = useEmblaCarousel({ loop: true, duration: 40 }, [
+    Autoplay({ delay: 5000, stopOnInteraction: false }),
+  ]);
 
   return (
     <div className="embla" ref={emblaRef}>
@@ -12,7 +15,10 @@ export default function EmblaCarousel() {
         <div className="embla__slide flex items-center justify-center">
           <Watch />
         </div>
-        <div className="embla__slide flex items-center justify-center">
+        <div
+          className="embla__slide flex items-center justify-center"
+          data-cursor="hover"
+        >
           <Image
             className="image-sizing"
             src="/defensie-mb.avif"
@@ -21,7 +27,10 @@ export default function EmblaCarousel() {
             alt="Minstry of Defense project"
           ></Image>
         </div>
-        <div className="embla__slide flex items-center justify-center">
+        <div
+          className="embla__slide flex items-center justify-center"
+          data-cursor="hover"
+        >
           <Image
             className="image-sizing"
             src="/hornemannhuis-green.avif"
